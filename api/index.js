@@ -12,7 +12,7 @@ const fs = require('fs');
 dotenv.config();
 const MONGO_URL = process.env.MONGO_URL;
 const JWT_SECRET = process.env.JWT_SECRET;
-
+const LOCAL = process.env.LOCAL;
 
 mongoose.connect(MONGO_URL, (err) => {
   if (err) throw err;
@@ -31,7 +31,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
   credentials: true,
-  origin: 'http://localhost:5173',
+  origin: LOCAL,
 }));
 
 async function getUserDataFromRequest(req) {
